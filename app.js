@@ -25,16 +25,17 @@ app.controller('myCtrl', function ($scope, $http) {
                     // }
                     
     $scope.apiCall = function(movieTitle) {
-
+        // Search for a single movie
         $http.get("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=24dbfc1d&")
             .then(function(result){
-            $scope.names = result.data
+            $scope.details = result.data
             console.log(result.data)
-            console.log(movieTitle); 
         })
+        // Search for related titles
         $http.get("http://www.omdbapi.com/?s=" + movieTitle + "&apikey=24dbfc1d&")
         .then(function(result) {
-            console.log(result);
+            $scope.related = result.data.Search
+            console.log($scope.related);
             
         })
     }

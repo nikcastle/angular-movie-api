@@ -9,12 +9,12 @@
     <div ng-app="myApp" ng-controller="myCtrl">
         <div>
             <label>
-                Search for a movie title: 
+                Search for a movie: 
                 <input type="text" 
                 ng-model="movieTitle" 
                 name="movieTitle" 
                 ng-required="true"
-                placeholder="Enter a full movie name"/>
+                placeholder="Enter a full movie title"/>
             </label>
             <!-- <span class="error-message" ng-show="movieTitle.$dirty && movieTitle.$error.required">You must enter a movie title to search</span> -->
             <button ng-click="apiCall(movieTitle)">Search</button>
@@ -29,12 +29,22 @@
         </ul> -->
 
         <div>
-            <h4>Search Results for {{movieTitle}}: </h4>
+            <!-- <p>Search Results for {{movieTitle}}: </p> -->
+            <h1>{{details.Title}}</h1>
+            <h2>{{details.Year}}</h2>
+            <h4 ng-hide="!details.Director">Directed by {{details.Director}}</h4>
+            <p ng-hide="!details.Actors">Starring {{details.Actors}}</p>
+            <img src={{details.Poster}}>
         </div>
 
-        <div>
+        <!-- <div>
             <h4>Related Results for {{movieTitle}}: </h4>
-        </div>
+            <ul>
+                <li ng-repeat="movie in related.Search">
+                    {{movie.Title}} {{movie.Year}}
+                </li>
+            </ul>
+        </div> -->
     </div>
     <script src="app.js"></script>
 </body>
