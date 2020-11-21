@@ -9,7 +9,7 @@
     <div ng-app="myApp" ng-controller="myCtrl">
         <div>
             <label>
-                Search for a movie: 
+                Search for a movie or TV show: 
                 <input type="text" 
                 ng-model="movieTitle" 
                 name="movieTitle" 
@@ -20,31 +20,36 @@
             <button ng-click="apiCall(movieTitle)">Search</button>
         </div>
 
-        <!-- Last Name: <input type="text" ng-model="lastName" /><br />
-        <br />
-        Full Name: {{firstName + " " + lastName}}
-        <br />
-        <ul ng-repeat="name in names">
-            <li>{{name.firstName}} {{name.lastName}}</li>
-        </ul> -->
-
-        <div>
+        <!-- Single movie search Results -->
+        <div ng-hide="!details">
             <!-- <p>Search Results for {{movieTitle}}: </p> -->
             <h1>{{details.Title}}</h1>
             <h2>{{details.Year}}</h2>
-            <h4 ng-hide="!details.Director">Directed by {{details.Director}}</h4>
-            <p ng-hide="!details.Actors">Starring {{details.Actors}}</p>
+            <h4 ng-hide="details.Director === 'N/A' ">Directed by {{details.Director}}</h4>
+            <p">Starring {{details.Actors}}</p>
             <img src={{details.Poster}}>
-        </div>
+            <p>{{details.Plot}}</p>
+            <p>{{details.Rated}} | {{details.Runtime}}</p>
 
-        <!-- <div>
+            <div class="reviews">
+                <ul>
+                    <li ng-repeat="rating in details.Ratings">{{rating.Source}}: {{rating.Value}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- End of single movie search results -->
+
+        <!-- Related titles search -->
+        <div ng-hide="!related.data.Search">
             <h4>Related Results for {{movieTitle}}: </h4>
             <ul>
-                <li ng-repeat="movie in related.Search">
+                <li ng-repeat="movie in Related">
                     {{movie.Title}} {{movie.Year}}
                 </li>
             </ul>
-        </div> -->
+        </div>
+        <!-- End of related titles -->
     </div>
     <script src="app.js"></script>
 </body>
