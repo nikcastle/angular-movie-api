@@ -18,6 +18,7 @@ app.controller('myCtrl', function ($scope, $http) {
         })
     };
 
+    // Run search again when related title is clicked
     $scope.newSearch = function(movie) {
         $http.get("http://www.omdbapi.com/?t=" + movie + "&plot=full&apikey=24dbfc1d&")
             .then(function(result){
@@ -26,6 +27,7 @@ app.controller('myCtrl', function ($scope, $http) {
         })
     };
 
+    // Advanced search using more parameters
     $scope.advanced = function(data) {
         $http.get("http://www.omdbapi.com/?t=" + data.title + "&type=" + data.type +"&plot=full&apikey=24dbfc1d&")
             .then(function(result){
