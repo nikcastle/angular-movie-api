@@ -1,6 +1,7 @@
 body {
     background-color: #ebf5f5;
-    color: #00012f
+    color: #00012f;
+   
 }
 
 .jumbotron {
@@ -15,6 +16,14 @@ body {
     width:auto;
 }
 
+.heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
 .card-right {
-    padding: 80px;
+    align-items: center;
+    height: 500px;
+    padding-top: 100px;
+    justify-content: center;
 }
