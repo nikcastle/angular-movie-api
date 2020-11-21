@@ -9,58 +9,70 @@
 <body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">Fluid jumbotron</h1>
-            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+            <h1 class="display-4">Search for your favorite movies</h1>
+            <p class="lead">Find the director, the cast, the release year, and more!</p>
         </div>
     </div>
+<!-- Main Content -->
     <div class="container" ng-app="myApp" ng-controller="myCtrl">
         <div class="card search">
             <label>
                 Search for a movie or TV show:
                 <input type="text" ng-model="movieTitle" name="movieTitle" ng-required="true"
-                    placeholder="Enter a full movie title" />
+                    placeholder="click to type" />
             </label>
             <!-- <span class="error-message" ng-show="movieTitle.$dirty && movieTitle.$error.required">You must enter a movie title to search</span> -->
             <button class="btn btn-info" ng-click="apiCall(movieTitle)">Search</button>
         </div>
 
         <!-- Single movie search Results -->
+        <div ng-if="details==='False'">
+            
+        </div>
         <div class="wrapper" ng-hide="!details">
+            <div ng-show="!details.Title">
+                <p>Sorry, it looks like we don't have that title. Please try searching for something else.</p>
+            </div>
             <div class="row">
                 <div class="col heading">
                     <h1 class="card-title">{{details.Title}}</h1>
                     <h2 class="card-subtitle">{{details.Year}}</h2>
-                    <h4 ng-hide="details.Director === 'N/A' ">Directed by {{details.Director}}</h4>
-                    <p">Starring {{details.Actors}}</p>
+                    <h4 ng-hide="details.Director == 'N/A' || !details.Director">Directed by {{details.Director}}</h4>
+                    <p ng-hide="!details.Actor">Starring {{details.Actors}}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <div class="card text-center">
                         <div class=card-body">
-                            <img src={{details.Poster}} class="align-self-center mr-3" alt="promotional poster for {{details.Title}}">
+                            <img ng-hide="!details.Poster" src={{details.Poster}} class="align-self-center mr-3" alt="promotional poster for {{details.Title}}">
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-6 card-right">
+                <div class="col-sm-12 col-md-6 card-right" ng-hide="!details.Genre && !details.Rated">
                     <div class="card">
                         <p class="card-text">{{details.Plot}}</p>
                         <p>{{details.Rated}} | {{details.Runtime}}</p>
                     </div>
+                    <div>
+                        <p><strong>Genre: </strong>{{details.Genre}}</p>
+                    </div>
                     <div class="reviews">
+                        <p><strong>Ratings:</strong></p>
                         <ul>
-                            <li ng-repeat="rating in details.Ratings">{{rating.Source}}: {{rating.Value}}
+                            <li class="list-item" ng-repeat="rating in details.Ratings">{{rating.Source}}: {{rating.Value}}
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+        
         <!-- End of single movie search results -->
 
         <!-- Related titles search -->
         <div ng-hide="!related">
-            <h4>Related Results for {{movieTitle}}: </h4>
+            <h3>Titles related to {{movieTitle}}: </h3>
             <ul>
                 <li ng-repeat="movie in related">
                     <a href="#" id="{{$index + 1}}" ng-click="newSearch(movie.Title)">
