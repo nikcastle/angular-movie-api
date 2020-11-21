@@ -1,0 +1,20 @@
+body {
+    background-color: #ebf5f5;
+    color: #00012f
+}
+
+.jumbotron {
+    background-color: #062258;
+    color: white
+}
+
+.search {
+    align-items: center;
+    margin-bottom: 30px;
+    justify-content: center;
+    width:auto;
+}
+
+.card-right {
+    padding: 80px;
+}
