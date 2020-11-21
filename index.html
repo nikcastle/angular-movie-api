@@ -7,10 +7,18 @@
 
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
-        <label>
-            Search for a movie title: <input type="text" ng-model="movieTitle" />
-        </label>
-        <button ng-click="apiCall(movieTitle)">Search</button>
+        <div>
+            <label>
+                Search for a movie title: 
+                <input type="text" 
+                ng-model="movieTitle" 
+                name="movieTitle" 
+                ng-required="true"
+                placeholder="Enter a full movie name"/>
+            </label>
+            <!-- <span class="error-message" ng-show="movieTitle.$dirty && movieTitle.$error.required">You must enter a movie title to search</span> -->
+            <button ng-click="apiCall(movieTitle)">Search</button>
+        </div>
 
         <!-- Last Name: <input type="text" ng-model="lastName" /><br />
         <br />
@@ -20,8 +28,13 @@
             <li>{{name.firstName}} {{name.lastName}}</li>
         </ul> -->
 
-        <p>You searched: {{movieTitle}}</p>
-        <h4>Results: </h4>
+        <div>
+            <h4>Search Results for {{movieTitle}}: </h4>
+        </div>
+
+        <div>
+            <h4>Related Results for {{movieTitle}}: </h4>
+        </div>
     </div>
     <script src="app.js"></script>
 </body>

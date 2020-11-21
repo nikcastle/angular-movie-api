@@ -26,14 +26,15 @@ app.controller('myCtrl', function ($scope, $http) {
                     
     $scope.apiCall = function(movieTitle) {
 
-        $http({
-            method: "GET",
-            url: "http://www.omdbapi.com/?t=" + movieTitle + "&apikey=24dbfc1d&"})
+        $http.get("http://www.omdbapi.com/?t=" + movieTitle + "&apikey=24dbfc1d&")
             .then(function(result){
             $scope.names = result.data
             console.log(result.data)
-            console.log(movieTitle);
-            ;
+            console.log(movieTitle); 
+        })
+        $http.get("http://www.omdbapi.com/?s=" + movieTitle + "&apikey=24dbfc1d&")
+        .then(function(result) {
+            console.log(result);
             
         })
     }
