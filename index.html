@@ -1,42 +1,56 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
 <body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Fluid jumbotron</h1>
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        </div>
+    </div>
     <div ng-app="myApp" ng-controller="myCtrl">
-        <div>
+        <div class="card search">
             <label>
-                Search for a movie or TV show: 
-                <input type="text" 
-                ng-model="movieTitle" 
-                name="movieTitle" 
-                ng-required="true"
-                placeholder="Enter a full movie title"/>
+                Search for a movie or TV show:
+                <input type="text" ng-model="movieTitle" name="movieTitle" ng-required="true"
+                    placeholder="Enter a full movie title" />
             </label>
             <!-- <span class="error-message" ng-show="movieTitle.$dirty && movieTitle.$error.required">You must enter a movie title to search</span> -->
-            <button ng-click="apiCall(movieTitle)">Search</button>
+            <button class="btn btn-info" ng-click="apiCall(movieTitle)">Search</button>
         </div>
 
         <!-- Single movie search Results -->
-        <div ng-hide="!details">
-            <!-- <p>Search Results for {{movieTitle}}: </p> -->
-            <h1>{{details.Title}}</h1>
-            <h2>{{details.Year}}</h2>
-            <h4 ng-hide="details.Director === 'N/A' ">Directed by {{details.Director}}</h4>
-            <p">Starring {{details.Actors}}</p>
-            <img src={{details.Poster}}>
-            <p>{{details.Plot}}</p>
-            <p>{{details.Rated}} | {{details.Runtime}}</p>
-
-            <div class="reviews">
-                <ul>
-                    <li ng-repeat="rating in details.Ratings">{{rating.Source}}: {{rating.Value}}
-                    </li>
-                </ul>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card text-center" ng-hide="!details">
+                    <div class=card-body">
+                        <h1 class="card-title">{{details.Title}}</h1>
+                        <h2 class="card-subtitle">{{details.Year}}</h2>
+                        <h4 ng-hide="details.Director === 'N/A' ">Directed by {{details.Director}}</h4>
+                        <p">Starring {{details.Actors}}</p>
+                            <img src={{details.Poster}} class="align-self-center mr-3"
+                                alt="promotional poster for {{details.Title}}">
+                    </div>
+                </div>
             </div>
+            <div class="col-sm-4 card-right">
+                <div class="card">
+                    <p class="card-text">{{details.Plot}}</p>
+                    <p>{{details.Rated}} | {{details.Runtime}}</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="reviews">
+            <ul>
+                <li ng-repeat="rating in details.Ratings">{{rating.Source}}: {{rating.Value}}
+                </li>
+            </ul>
         </div>
         <!-- End of single movie search results -->
 
