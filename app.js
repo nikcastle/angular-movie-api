@@ -23,5 +23,11 @@ app.controller('myCtrl', function ($scope, $http) {
         })
     }
 
-    // $scope.myFunction();
+    $scope.newSearch = function(movie) {
+        $http.get("http://www.omdbapi.com/?t=" + movie + "&plot=full&apikey=24dbfc1d&")
+            .then(function(result){
+            $scope.details = result.data
+            console.log(result.data)
+        })
+    };
 });
