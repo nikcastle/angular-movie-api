@@ -26,11 +26,11 @@
         </div>
 
         <!-- Single movie search Results -->
-        <div ng-if="details==='False'">
+        <div ng-if="details ==='False'">
             
         </div>
         <div class="wrapper" ng-hide="!details">
-            <div ng-show="!details.Title">
+            <div ng-if="!details.Title">
                 <p>Sorry, it looks like we don't have that title. Please try searching for something else.</p>
             </div>
             <div class="row">
@@ -47,7 +47,8 @@
                         <div class=card-body">
                             <img ng-hide="!details.Poster" 
                             ng-src="{{ details.Poster=='N/A' ? 'http://placehold.it/300x380&text=N/A' : details.Poster }}" 
-                            alt="promotional poster for {{details.Title}}">
+                            alt="promotional poster for {{details.Title}"
+                            >
                         </div>
                     </div>
                 </div>
@@ -84,6 +85,52 @@
             </ul>
         </div>
         <!-- End of related titles -->
+
+        <!-- Advanced Search -->
+        <div class="card" ng-hide="!details">
+            <h4 class="card-header">Didn't find what you were looking for? Try our <button ng-click="advanced === True" class="advanced-btn">Advanced Search.</button></h4>
+        </div>
+        <form class="card advanced-card" ng-hide="advanced === False">
+            <input 
+            type="text" 
+            class="form-control" 
+            ng-model="advancedTitle" 
+            placeholder="Title*"
+            >
+            <select 
+            class="form-control form-control-lg" 
+            ng-required="true"
+            >
+                <option selected readonly>Select a type*</option>
+                <option>movie</option>
+                <option>series</option>
+                <option>episode</option>
+              </select>
+              <div class="form-check">
+                  <p>Do you know the year?*</p>
+                <input class="form-check-input" type="radio" name="year" ng-model="yesYear" value="year1" checked>
+                <label class="form-check-label" for="yesYear">
+                  Yes
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="year" ng-model="noYear" value="year2">
+                <label class="form-check-label" for="noYear">
+                  No
+                </label>
+              </div>
+              <div>
+                <input 
+                type="text" 
+                class="form-control" 
+                ng-hide="!advancedYear"
+                ng-model="newYear" 
+                placeholder="Year*"
+                > 
+              </div>
+              <button type="submit" class="btn btn-primary" ng-click="advanced(data)">Search</button>
+        </form>
+        <!-- End of Advanced -->
     </div>
     <script src="app.js"></script>
 </body>
