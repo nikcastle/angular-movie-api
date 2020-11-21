@@ -44,7 +44,7 @@
         <div ng-hide="!related.data.Search">
             <h4>Related Results for {{movieTitle}}: </h4>
             <ul>
-                <li ng-repeat="movie in Related">
+                <li ng-repeat="movie in related.Search">
                     {{movie.Title}} {{movie.Year}}
                 </li>
             </ul>
