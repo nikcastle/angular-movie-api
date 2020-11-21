@@ -1,6 +1,7 @@
 body {
     background-color: #ebf5f5;
     color: #00012f;
+    font-family: Georgia, 'Times New Roman', Times, serif;
    
 }
 
@@ -16,6 +17,11 @@ body {
     width:auto;
 }
 
+.btn {
+    background-color: #ca7c94;
+    border-color: #9e88b0;
+}
+
 .heading {
     text-align: center;
     margin-bottom: 45px;
@@ -24,6 +30,16 @@ body {
 .card-right {
     align-items: center;
     height: 500px;
-    padding-top: 100px;
+    padding-top: 80px;
     justify-content: center;
+}
+
+.advanced-card {
+    width: 500px;
+}
+
+.advanced-btn {
+    border: none;
+    background: none;
+    color: #ca7c94;
 }
