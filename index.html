@@ -7,16 +7,23 @@
 
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
-        First Name: <input type="text" ng-model="firstName" /><br />
-        Last Name: <input type="text" ng-model="lastName" /><br />
+        <label>
+            Search for a movie title: <input type="text" ng-model="movieTitle" />
+        </label>
+        <button ng-click="apiCall(movieTitle)">Search</button>
+
+        <!-- Last Name: <input type="text" ng-model="lastName" /><br />
         <br />
         Full Name: {{firstName + " " + lastName}}
         <br />
         <ul ng-repeat="name in names">
             <li>{{name.firstName}} {{name.lastName}}</li>
-        </ul>
+        </ul> -->
+
+        <p>You searched: {{movieTitle}}</p>
+        <h4>Results: </h4>
     </div>
-    <script src="js.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
