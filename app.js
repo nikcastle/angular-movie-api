@@ -2,7 +2,6 @@ var app = angular.module('myApp', []);
 app.controller('myCtrl', function ($scope, $http) {
 
     $(".advanced-card").hide();
-    
               
     $scope.apiCall = function(movieTitle) {
         //* Search for a single movie
@@ -29,8 +28,7 @@ app.controller('myCtrl', function ($scope, $http) {
             movieTitle = "";
             $(".movieTitle").val("");
             $(".advanced-card").hide();            
-        }
-        
+        } 
     };
 
     //* Run search again when related title is clicked

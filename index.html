@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<!-- Jumbotron -->
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Welcome to <strong>Film Reel</strong></h1>
@@ -25,15 +26,11 @@
                 Search for a movie or TV show:
                 <input type="text" ng-model="movieTitle" class="movieTitle" ng-required="true"/>
             </label>
-            <button class="btn btn-info" ng-click="apiCall(movieTitle)" data-toggle="modal" data-target="#staticBackdrop">Search</button>
+            <button class="btn btn-info" ng-click="apiCall(movieTitle)" data-toggle="modal" data-target="errorModal">Search</button>
         </div>
-                <!-- Button trigger modal -->
-        <!-- <button type="button" class="btn btn-primary"  data-target="#exampleModal">
-            Launch demo modal
-        </button> -->
         
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <!-- Error Message Modal -->
+        <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
             <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -57,7 +54,6 @@
                 <a href="https://www.timeout.com/newyork/movies/best-movies-of-all-time" target="blank" class="home-text">Or check out this list of the 100 greatest movies of all time!</a>
                 <img src="./images/tiled-posters.png" class="d-block home-image" alt="tiled promotional posters for hundred best movies of all time">
         </div>
-          <!-- End of Home Image -->
 
         <!-- Single movie search Results -->
         <div ng-if="details ==='False'">
@@ -74,7 +70,7 @@
                     <div class="card text-center">
                         <div class=card-body">
                             <img ng-hide="!details.Poster"
-                                ng-src="{{ details.Poster=='N/A' ? 'http://placehold.it/300x380&text=N/A' : details.Poster }}"
+                                ng-src="{{ details.Poster == 'N/A' ? 'http://placehold.it/300x380&text=N/A' : details.Poster }}"
                                 alt="promotional poster for {{details.Title}"
                             >
                         </div>
@@ -151,7 +147,7 @@
             </form>
             <!-- End of Advanced -->
     </div>
+
     <script src="app.js"></script>
 </body>
-
 </html>
