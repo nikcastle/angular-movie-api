@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" type="image/png" href="/images/film-reel.png">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <title>Film Reel</title>
+</head>
 
 <body>
     <div class="jumbotron jumbotron-fluid">
@@ -23,12 +25,36 @@
                 Search for a movie or TV show:
                 <input type="text" ng-model="movieTitle" class="movieTitle" ng-required="true"/>
             </label>
-            <button class="btn btn-info" ng-click="apiCall(movieTitle)">Search</button>
+            <button class="btn btn-info" ng-click="apiCall(movieTitle)" data-toggle="modal" data-target="#staticBackdrop">Search</button>
+        </div>
+                <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-primary"  data-target="#exampleModal">
+            Launch demo modal
+        </button> -->
+        
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Uh oh!</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <p>Please enter a title to search.</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            </div>
         </div>
 
         <!-- Homepage Image -->
         <div class="homepage">
-                <a href="https://www.timeout.com/newyork/movies/best-movies-of-all-time" target="blank" class="home-text">Or check out the 100 greatest movies of all time!</a>
+                <a href="https://www.timeout.com/newyork/movies/best-movies-of-all-time" target="blank" class="home-text">Or check out this list of the 100 greatest movies of all time!</a>
                 <img src="./images/tiled-posters.png" class="d-block home-image" alt="tiled promotional posters for hundred best movies of all time">
         </div>
           <!-- End of Home Image -->
