@@ -13,17 +13,25 @@
             <p class="lead">Find the director, the cast, the release year, and more!</p>
         </div>
     </div>
+
     <!-- Main Content -->
     <div class="container" ng-app="myApp" ng-controller="myCtrl">
-        <div class="card search">
+         <!-- Search button -->
+         <div class="card search">
             <label>
                 Search for a movie or TV show:
                 <input type="text" ng-model="movieTitle" name="movieTitle" ng-required="true"
                     placeholder="click to type" />
             </label>
-            <!-- <span class="error-message" ng-show="movieTitle.$dirty && movieTitle.$error.required">You must enter a movie title to search</span> -->
             <button class="btn btn-info" ng-click="apiCall(movieTitle)">Search</button>
         </div>
+
+        <!-- Homepage Images -->
+        <div class="homepage">
+                <a href="https://www.timeout.com/newyork/movies/best-movies-of-all-time" target="blank" class="home-text">Or check out the 100 greatest movies of all time!</a>
+                <img src="./images/tiled-posters.png" class="d-block home-image" alt="tiled promotional posters for hundred best movies of all time">
+        </div>
+          <!-- End of Home Image -->
 
         <!-- Single movie search Results -->
         <div ng-if="details ==='False'">

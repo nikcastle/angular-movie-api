@@ -10,6 +10,17 @@ body {
     color: white
 }
 
+.home-text {
+    color: #062258;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.home-image {
+    image-rendering: crisp-edges;
+    margin-top: 20px;
+}
+
 .search {
     align-items: center;
     margin-bottom: 30px;
