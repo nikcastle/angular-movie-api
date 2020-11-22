@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <!-- Main Content -->
+<!-- Main Content -->
     <div class="container" ng-app="myApp" ng-controller="myCtrl">
          <!-- Search button -->
          <div class="card search">
@@ -25,7 +25,7 @@
             <button class="btn btn-info" ng-click="apiCall(movieTitle)">Search</button>
         </div>
 
-        <!-- Homepage Images -->
+        <!-- Homepage Image -->
         <div class="homepage">
                 <a href="https://www.timeout.com/newyork/movies/best-movies-of-all-time" target="blank" class="home-text">Or check out the 100 greatest movies of all time!</a>
                 <img src="./images/tiled-posters.png" class="d-block home-image" alt="tiled promotional posters for hundred best movies of all time">
@@ -41,6 +41,7 @@
                 <p>Sorry, it looks like we don't have that title. Please try searching for something else.</p>
             </div>
 
+            <!-- Printed results -->
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <div class="card text-center">
@@ -74,7 +75,6 @@
                 </div>
             </div>
         </div>
-
         <!-- End of single movie search results -->
 
         <!-- Related titles search -->
@@ -92,33 +92,34 @@
 
             <!-- Advanced Search -->
             <div class="card" ng-hide="!details">
-                <h4 class="card-header">Didn't find what you were looking for? Try our <button
-                        ng-click="showAdvanced()" class="advanced-btn">Advanced Search.</button></h4>
+                <h4 class="card-header">Didn't find what you were looking for? Try our <button ng-click="showAdvanced()" class="advanced-btn">Advanced Search.</button></h4>
             </div>
-            <form class="card advanced-card" >
-                <input type="text" class="form-control" ng-model="user.title" placeholder="Title*">
-                <select class="form-control form-control-lg" ng-required="true" ng-model="user.select">
-                    <option>movie</option>
-                    <option>series</option>
-                    <option>episode</option>
+            <form class="card advanced-card" ng-model="userForm">
+                <label for="user.title">Please enter the full title*</label>
+                <input type="text" class="form-control user-form" ng-model="user.title" ng-required="true" placeholder="What Dreams May Come">
+                <label for="user.select">Please select a type (movie, series, or episode)*</label>
+                <select class=" user-form form-control form-control-lg" ng-required="true" ng-model="user.select">
+                    <option>Movie</option>
+                    <option>Series</option>
+                    <option>Episode</option>
                 </select>
                 <div class="form-check">
-                    <p>Do you know the year?*</p>
-                    <input class="form-check-input" type="radio" name="year" ng-model="user.yes" value="year1" checked>
+                    <label>Do you know the year?</label></br>
+                    <input class="form-check-input" type="radio" name="year" ng-model="user.yes" value="yes" checked>
                     <label class="form-check-label" for="yesYear">
                         Yes
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="year" ng-model="user.no" value="year2">
+                    <input class="form-check-input" type="radio" name="year" ng-model="user.no" value="no">
                     <label class="form-check-label" for="noYear">
                         No
                     </label>
                 </div>
                 <div>
-                    <input type="text" class="form-control" ng-hide="!user.yes" ng-model="user.year"
-                        placeholder="Year*">
+                    <input type="text" class="form-control" ng-hide="!user.yes" ng-model="user.year" placeholder="Year">
                 </div>
+                <p>*These fields are required</p>
                 <button type="submit" class="btn btn-primary" ng-click="advanced(user)">Search</button>
             </form>
             <!-- End of Advanced -->
