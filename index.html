@@ -18,10 +18,9 @@
     <div class="container" ng-app="myApp" ng-controller="myCtrl">
          <!-- Search button -->
          <div class="card search">
-            <label>
+            <label class="search-label">
                 Search for a movie or TV show:
-                <input type="text" ng-model="movieTitle" name="movieTitle" ng-required="true"
-                    placeholder="click to type" />
+                <input type="text" ng-model="movieTitle" class="movieTitle" ng-required="true"/>
             </label>
             <button class="btn btn-info" ng-click="apiCall(movieTitle)">Search</button>
         </div>
@@ -35,20 +34,13 @@
 
         <!-- Single movie search Results -->
         <div ng-if="details ==='False'">
-
+            <!-- empty div if there is nothing to show yet -->
         </div>
         <div class="wrapper" ng-hide="!details">
             <div ng-if="!details.Title">
                 <p>Sorry, it looks like we don't have that title. Please try searching for something else.</p>
             </div>
-            <div class="row">
-                <div class="col heading">
-                    <h1 class="card-title">{{details.Title}}</h1>
-                    <h2 class="card-subtitle">{{details.Year}}</h2>
-                    <h4 ng-hide="details.Director == 'N/A' || !details.Director">Directed by {{details.Director}}</h4>
-                    <p ng-hide="!details.Actor">Starring {{details.Actors}}</p>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <div class="card text-center">
@@ -62,7 +54,10 @@
                 </div>
                 <div class="col-sm-12 col-md-6 card-right" ng-hide="!details.Genre && !details.Rated">
                     <div class="card">
+                        <h1 class="card-title">{{details.Title}}, <span class="year">{{details.Year}}</span></h1>
+                        <h4 ng-hide="details.Director == 'N/A' || !details.Director">Directed by {{details.Director}}</h4>
                         <p class="card-text">{{details.Plot}}</p>
+                        <p><strong>Starring </strong>{{details.Actors}}</p>
                         <p>{{details.Rated}} | {{details.Runtime}}</p>
                     </div>
                     <div>
@@ -83,7 +78,7 @@
         <!-- End of single movie search results -->
 
         <!-- Related titles search -->
-            <div ng-hide="!related">
+            <div ng-hide="!related" class="related-list">
                 <h3>Titles related to "{{movieTitle}}": </h3>
                 <ul>
                     <li ng-repeat="movie in related">
@@ -101,31 +96,30 @@
                         ng-click="showAdvanced()" class="advanced-btn">Advanced Search.</button></h4>
             </div>
             <form class="card advanced-card" >
-                <input type="text" class="form-control" ng-model="advancedTitle" placeholder="Title*">
-                <select class="form-control form-control-lg" ng-required="true">
-                    <option selected readonly>Select a type*</option>
+                <input type="text" class="form-control" ng-model="user.title" placeholder="Title*">
+                <select class="form-control form-control-lg" ng-required="true" ng-model="user.select">
                     <option>movie</option>
                     <option>series</option>
                     <option>episode</option>
                 </select>
                 <div class="form-check">
                     <p>Do you know the year?*</p>
-                    <input class="form-check-input" type="radio" name="year" ng-model="yesYear" value="year1" checked>
+                    <input class="form-check-input" type="radio" name="year" ng-model="user.yes" value="year1" checked>
                     <label class="form-check-label" for="yesYear">
                         Yes
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="year" ng-model="noYear" value="year2">
+                    <input class="form-check-input" type="radio" name="year" ng-model="user.no" value="year2">
                     <label class="form-check-label" for="noYear">
                         No
                     </label>
                 </div>
                 <div>
-                    <input type="text" class="form-control" ng-hide="!advancedYear" ng-model="newYear"
+                    <input type="text" class="form-control" ng-hide="!user.yes" ng-model="user.year"
                         placeholder="Year*">
                 </div>
-                <button type="submit" class="btn btn-primary" ng-click="advanced(data)">Search</button>
+                <button type="submit" class="btn btn-primary" ng-click="advanced(user)">Search</button>
             </form>
             <!-- End of Advanced -->
     </div>

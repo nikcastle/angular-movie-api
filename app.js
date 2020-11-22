@@ -7,9 +7,9 @@ app.controller('myCtrl', function ($scope, $http) {
     $scope.apiCall = function(movieTitle) {
         // Search for a single movie
         $(".homepage").hide();
-
+        
         $http.get("http://www.omdbapi.com/?t=" + movieTitle + "&plot=full&apikey=24dbfc1d&")
-            .then(function(result){
+        .then(function(result){
             $scope.details = result.data
             // console.log(result.data)
         })
@@ -21,6 +21,7 @@ app.controller('myCtrl', function ($scope, $http) {
             // console.log($scope.related);
             
         })
+
     };
 
     // Run search again when related title is clicked
@@ -33,11 +34,19 @@ app.controller('myCtrl', function ($scope, $http) {
     };
 
     // Advanced search using more parameters
-    $scope.advanced = function(data) {
-        $http.get("http://www.omdbapi.com/?t=" + data.title + "&type=" + data.type +"&plot=full&apikey=24dbfc1d&")
+    $scope.advanced = function(user) {
+        console.log("clicked");
+        console.log(user)
+        var title = user.title.split(" ").join("+")
+
+        var url = "http://www.omdbapi.com/?t=" + title + "&type=" + user.select + "&y=" + user.year +"&plot=full&apikey=24dbfc1d&"
+
+        console.log(url);
+
+        $http.get(url)
             .then(function(result){
             $scope.details = result.data
-            // console.log(result.data)
+            console.log(result.data)
         })
     }
 
