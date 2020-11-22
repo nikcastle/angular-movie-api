@@ -8,7 +8,7 @@ app.controller('myCtrl', function ($scope, $http) {
         //* Search for a single movie
         
         if (!movieTitle) {
-            alert("Please enter a movie title to search.")
+            $('#errorModal').modal('toggle')
         } else {
             $(".homepage").hide();
             $(".advanced-card").hide();
@@ -18,17 +18,17 @@ app.controller('myCtrl', function ($scope, $http) {
                 $scope.details = result.data
                 // console.log(result.data)
             })
-    
+            
             //* Search for related titles
             $http.get("http://www.omdbapi.com/?s=" + movieTitle + "&apikey=24dbfc1d&")
             .then(function(result) {
                 $scope.related = result.data.Search
                 // console.log($scope.related);
-                
             })
-    
+            
+            movieTitle = "";
             $(".movieTitle").val("");
-            $(".advanced-card").hide();
+            $(".advanced-card").hide();            
         }
         
     };
