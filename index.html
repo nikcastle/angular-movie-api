@@ -90,9 +90,9 @@
             <!-- Advanced Search -->
             <div class="card" ng-hide="!details">
                 <h4 class="card-header">Didn't find what you were looking for? Try our <button
-                        ng-click="advanced === True" class="advanced-btn">Advanced Search.</button></h4>
+                        ng-click="showAdvanced()" class="advanced-btn">Advanced Search.</button></h4>
             </div>
-            <form class="card advanced-card" ng-hide="advanced === False">
+            <form class="card advanced-card" >
                 <input type="text" class="form-control" ng-model="advancedTitle" placeholder="Title*">
                 <select class="form-control form-control-lg" ng-required="true">
                     <option selected readonly>Select a type*</option>

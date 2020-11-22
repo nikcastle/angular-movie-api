@@ -1,5 +1,8 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function ($scope, $http) {
+
+    $(".advanced-card").hide();
+    
               
     $scope.apiCall = function(movieTitle) {
         // Search for a single movie
@@ -35,4 +38,9 @@ app.controller('myCtrl', function ($scope, $http) {
             // console.log(result.data)
         })
     }
+
+    $scope.showAdvanced = function () {
+        $(".advanced-card").show();
+    }
+  
 });
